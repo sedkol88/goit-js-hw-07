@@ -28,9 +28,9 @@ function handleClick(event) {
         return
     }
 
-    // const instance = basicLightbox.create(`<img src="${event.target.dataset.source}" width="800" height="600">`)
-    // instance.show()
-
     const instance = new SimpleLightbox('.gallery a')
     instance.show()
+
+    instance.captionsData('alt')
+    instance.captionPosition()
 }
