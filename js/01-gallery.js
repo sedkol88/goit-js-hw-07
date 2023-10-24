@@ -35,4 +35,13 @@ function handleClick(event) {
 
     const instance = basicLightbox.create(`<img src="${event.target.dataset.source}" >`)
     instance.show()
-}
+};
+
+document.addEventListener('keyup', handleEsc);
+
+function handleEsc(event) {
+  if (event.key === 'Escape') {
+    instance.close(() => console.log('lightbox not visible anymore'))
+  }
+  else {return}
+};
