@@ -23,21 +23,21 @@ const markup = galleryItems
 
 list.insertAdjacentHTML("beforeend", markup);
 
-list.addEventListener("click", handleClick)
+list.addEventListener("click", handleClick);
 
 // ----------------------------------------------------------------------------
 function handleClick(event) {
     event.preventDefault();
 
     if (!event.target.classList.contains('gallery__image')) {
-        return
+      return;
     }
 
     const instance = basicLightbox.create(`<img src="${event.target.dataset.source}" >`);
     instance.show();
     document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') {
-      instance.close()
+      instance.close();
       document.removeEventListener('keydown');
     }
   });
