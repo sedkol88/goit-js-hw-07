@@ -18,19 +18,10 @@ const markup = galleryItems
 
 list.insertAdjacentHTML("beforeend", markup);
 
-// Реализация делегирования на ul.gallery и получение url большого изображения.
-list.addEventListener("click", handleClick)
-
-function handleClick(event) {
-    event.preventDefault();
-
-    if (!event.target.classList.contains('gallery__image')) {
-        return
-    }
-
-    const instance = new SimpleLightbox('.gallery a')
-    instance.show()
-
-    instance.captionsData('alt')
-    instance.captionPosition()
-}
+document.addEventListener('DOMContentLoaded', function() {
+  const lightbox = new SimpleLightbox('.gallery a', {
+    captionsData: 'alt',
+    captionPosition: 'bottom',
+    captionDelay: 250
+    });
+});
