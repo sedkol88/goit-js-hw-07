@@ -23,7 +23,6 @@ const markup = galleryItems
 
 list.insertAdjacentHTML("beforeend", markup);
 
-// Реализация делегирования на ul.gallery и получение url большого изображения.
 list.addEventListener("click", handleClick)
 
 function handleClick(event) {
@@ -33,15 +32,24 @@ function handleClick(event) {
         return
     }
 
-    const instance = basicLightbox.create(`<img src="${event.target.dataset.source}" >`)
-    instance.show()
+    const instance = basicLightbox.create(`<img src="${event.target.dataset.source}" >`);
+    instance.show();
+    document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      instance.close()
+      document.removeEventListener('keydown');
+    }
+  });
 };
 
-document.addEventListener('keyup', handleEsc);
+// ----------------------------------------------------------------------------
+// function handleClick(event) {
+//     event.preventDefault();
 
-function handleEsc(event) {
-  if (event.key === 'Escape') {
-    instance.close(() => console.log('lightbox not visible anymore'))
-  }
-  else {return}
-};
+//     if (!event.target.classList.contains('gallery__image')) {
+//         return
+//     }
+
+//     const instance = basicLightbox.create(`<img src="${event.target.dataset.source}" >`);
+//     instance.show();
+// };
