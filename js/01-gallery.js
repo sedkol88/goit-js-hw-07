@@ -25,6 +25,7 @@ list.insertAdjacentHTML("beforeend", markup);
 
 list.addEventListener("click", handleClick)
 
+// ----------------------------------------------------------------------------
 function handleClick(event) {
     event.preventDefault();
 
