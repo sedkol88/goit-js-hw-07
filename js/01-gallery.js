@@ -26,6 +26,25 @@ list.insertAdjacentHTML("beforeend", markup);
 list.addEventListener("click", handleClick);
 
 // ----------------------------------------------------------------------------
+const options = {
+  onShow: instance => {
+    console.log('Метод onShow викликаний');
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape') {
+        instance.close();
+      }
+    })
+  },
+  onClose: instance => {
+    console.log('Метод onClose викликаний');
+    document.removeEventListener('keydown', event => {
+      if (event.key === 'Escape') {
+        instance.close();
+      }
+    });
+  }
+};
+
 function handleClick(event) {
     event.preventDefault();
 
@@ -33,15 +52,27 @@ function handleClick(event) {
       return;
     }
 
-    const instance = basicLightbox.create(`<img src="${event.target.dataset.source}" >`);
-    instance.show();
-    document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape') {
-      instance.close();
-      document.removeEventListener('keydown');
-    }
-  });
+  const instance = basicLightbox.create(`<img src="${event.target.dataset.source}" >`, options);
+  instance.show();
 };
+
+// ----------------------------------------------------------------------------
+// function handleClick(event) {
+//     event.preventDefault();
+
+//     if (!event.target.classList.contains('gallery__image')) {
+//       return;
+//     }
+
+//     const instance = basicLightbox.create(`<img src="${event.target.dataset.source}" >`);
+//     instance.show();
+//     document.addEventListener('keydown', (event) => {
+//     if (event.key === 'Escape') {
+//       instance.close();
+//       document.removeEventListener('keydown');
+//     }
+//   });
+// };
 
 // ----------------------------------------------------------------------------
 // function handleClick(event) {
