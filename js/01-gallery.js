@@ -40,16 +40,16 @@ function handleClick(event) {
 const options = {
   onShow: instance => {
     console.log('Метод onShow викликаний');
-    document.addEventListener('keydown', closeModalEsc)
+    document.addEventListener('keydown', event => closeModalEsc(event, instance))
   },
 
   onClose: instance => {
     console.log('Метод onClose викликаний');
-    document.removeEventListener('keydown', closeModalEsc)
+    document.removeEventListener('keydown', event => closeModalEsc(event, instance))
   }
 };
 
-function closeModalEsc(event) {
+function closeModalEsc(event, instance) {
   if (event.key === 'Escape') {
     instance.close();
   }
