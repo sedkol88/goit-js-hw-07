@@ -41,7 +41,7 @@ const options = {
       if (event.key === 'Escape') {
         instance.close();
       }
-    });
+    })
   }
 };
 
