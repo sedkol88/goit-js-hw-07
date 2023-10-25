@@ -25,26 +25,6 @@ list.insertAdjacentHTML("beforeend", markup);
 
 list.addEventListener("click", handleClick);
 
-// ----------------------------------------------------------------------------
-const options = {
-  onShow: instance => {
-    console.log('Метод onShow викликаний');
-    document.addEventListener('keydown', event => {
-      if (event.key === 'Escape') {
-        instance.close();
-      }
-    })
-  },
-  onClose: instance => {
-    console.log('Метод onClose викликаний');
-    document.removeEventListener('keydown', event => {
-      if (event.key === 'Escape') {
-        instance.close();
-      }
-    })
-  }
-};
-
 function handleClick(event) {
     event.preventDefault();
 
@@ -55,6 +35,45 @@ function handleClick(event) {
   const instance = basicLightbox.create(`<img src="${event.target.dataset.source}" >`, options);
   instance.show();
 };
+
+// ----------------------------------------------------------------------------
+const options = {
+  onShow: instance => {
+    console.log('Метод onShow викликаний');
+    document.addEventListener('keydown', closeModalEsc)
+  },
+
+  onClose: instance => {
+    console.log('Метод onClose викликаний');
+    document.removeEventListener('keydown', closeModalEsc)
+  }
+};
+
+function closeModalEsc(event) {
+  if (event.key === 'Escape') {
+    instance.close();
+  }
+}
+
+// ----------------------------------------------------------------------------
+// const options = {
+//   onShow: instance => {
+//     console.log('Метод onShow викликаний');
+//     document.addEventListener('keydown', (event) => {
+//         if (event.key === 'Escape') {
+//           instance.close();
+//         }
+//     })
+//   },
+//   onClose: instance => {
+//     console.log('Метод onClose викликаний');
+//     document.removeEventListener('keydown', (event) => {
+//         if (event.key === 'Escape') {
+//           instance.close();
+//         }
+//     })
+//   }
+// };
 
 // ----------------------------------------------------------------------------
 // function handleClick(event) {
