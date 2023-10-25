@@ -46,6 +46,7 @@ const options = {
   onClose: instance => {
     console.log('Метод onClose викликаний');
     document.removeEventListener('keydown', event => closeModalEsc(event, instance))
+    console.log('Listener is deleted')
   }
 };
 
